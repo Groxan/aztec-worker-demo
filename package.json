@@ -1,0 +1,25 @@
+{
+  "name": "aztec-worker-demo",
+  "description": "aztec-worker-demo",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=16000 wxt",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=16000 wxt build",
+    "compile": "tsc --noEmit",
+    "postinstall": "wxt prepare"
+  },
+  "dependencies": {
+    "@aztec/accounts": "0.85.0-alpha-testnet.2",
+    "@aztec/aztec.js": "0.85.0-alpha-testnet.2",
+    "@aztec/foundation": "0.85.0-alpha-testnet.2",
+    "@aztec/noir-contracts.js": "0.85.0-alpha-testnet.2",
+    "@aztec/pxe": "0.85.0-alpha-testnet.2",
+    "@aztec/stdlib": "0.85.0-alpha-testnet.2"
+  },
+  "devDependencies": {
+		"cross-env": "^7.0.3",
+    "typescript": "^5.8.3",
+    "vite-plugin-node-polyfills": "^0.23.0",
+    "wxt": "^0.20.0"
+  }
+}
