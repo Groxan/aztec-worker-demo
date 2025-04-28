@@ -3,20 +3,28 @@ import { defineConfig } from 'wxt';
 
 export default defineConfig({
     vite: () => ({
+		headers: {
+			"Cross-Origin-Embedder-Policy": "require-corp",
+			"Cross-Origin-Opener-Policy": "same-origin",
+		},
         plugins: [
             nodePolyfills({
-                include: ["buffer", "crypto", "net", "path", "stream", "tty", "vm", "util"],
+                include: ["buffer", "net", "path", "stream", "tty", "vm", "util"],
             }),
         ],
         define: {
+            "process.browser": true,
             "process.env": JSON.stringify({
-                LOG_LEVEL: "verbose",
+                LOG_LEVEL: "silent",
                 BB_WASM_PATH: "/barretenberg.wasm.gz",
             }),
         },
+        optimizeDeps: {
+            exclude: ["@aztec/noir-acvm_js", "@aztec/noir-noirc_abi"],
+        },
     }),
     manifest: {
-        permissions: ["storage"],
+        permissions: ["offscreen", "storage"],
         content_security_policy: {
             extension_pages: "script-src 'self' 'wasm-unsafe-eval'",
         },
